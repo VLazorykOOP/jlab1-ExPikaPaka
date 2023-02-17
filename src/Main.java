@@ -4,7 +4,7 @@ public class Main {
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public static float my_max(ArrayList<Integer> arr)  {
+    public static float my_max(List<Integer> arr)  {
         // Find max value in a given array;
         int max;
         max = arr.get(0);
@@ -15,14 +15,14 @@ public class Main {
         return max;
     }
 
-    public static ArrayList<Integer> clear_repeatings_pairs(ArrayList<Integer> arr) {
+    public static List<Integer> clear_repeatings_pairs(List<Integer> arr) {
         // Clears array of repeating's pairs
         // Ex. 1 2 3 4 4 3 => 1 2
 
-        ArrayList<Integer> clear = new ArrayList<>();
+        List<Integer> clear = new ArrayList<>();
 
         if(arr.size() > 0) {
-            boolean same = false;
+            boolean same;
 
             for (int i = 0; i < arr.size(); i++) {
                 same = false;
@@ -31,6 +31,7 @@ public class Main {
 
                     if (Objects.equals(arr.get(i), arr.get(k))) {
                         same = true;
+                        break;
                     }
                 }
                 if (!same) {
@@ -46,10 +47,10 @@ public class Main {
         // Basic mathematical, IO operations
 
         System.out.println("Task 1 (basic operations). Input 2 float variables: \n");
-        float a = Float.parseFloat(scanner.next());
-        float b = Float.parseFloat(scanner.next());
+        double a = Float.parseFloat(scanner.next());
+        double b = Float.parseFloat(scanner.next());
 
-        float res = (a * b - (a + b) * (a - b)) / (b * b * b * b + a * a * a) + 5 * b;
+        double res = (a * b - (a + b) * (a - b)) / (b * b * b * b + a * a * a) + 5.0 * b;
 
         System.out.println("Result (real - real):  " + res);
         System.out.println("Result (real - integer):  " + (int)res);
@@ -59,7 +60,10 @@ public class Main {
         a = (int)a;
         b = (int)b;
 
-        res = (a * b - (a + b) * (a - b)) / (b * b * b * b + a * a * a) + 5 * b;
+        double c = a;
+        double d = b;
+
+        res = (c == 0 && d == 0) ? 0 : (c * d - (c + d) * (c - d)) / (d * d * d * d + c * c * c) + 5.0 * d;
         System.out.println("Result (integer - real):  " + res);
     }
 
@@ -75,7 +79,7 @@ public class Main {
 
         // If input 'a' - using pre-defined array
         if(Objects.equals(choice, "a")) {
-            ArrayList<Integer> arr = new ArrayList<>(
+            List<Integer> arr = new ArrayList<>(
                     Arrays.asList(1, 2, 3, 4, 5,
                             1, 2, 3, 4, 5,
                             1, 2, 3, 4, 5,
@@ -93,7 +97,7 @@ public class Main {
 
         // If input 'b' - using user-input array
         if(Objects.equals(choice, "b")) {
-            ArrayList<Integer> arr = new ArrayList<>();
+            List<Integer> arr = new ArrayList<>();
             String buffer = "";
             int limit = 400;
 
@@ -215,8 +219,6 @@ public class Main {
             System.out.println("Input task number 1, 2, 3, 4, (5 to exit): ");
             choice = scanner.nextInt();
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
 
             if(choice == 1) {
                 task_1();
